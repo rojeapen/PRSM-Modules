@@ -1,12 +1,15 @@
 import PrsmLogo from './PrsmLogo'
 
 interface HeaderProps {
+  title: string
+  subtitle?: string
+  credit?: string
   current: number
   total: number
 }
 
-export default function Header({ current, total }: HeaderProps) {
-  const pct = Math.round((current / total) * 100)
+export default function Header({ title, subtitle, credit, current, total }: HeaderProps) {
+  const pct = total > 0 ? Math.round((current / total) * 100) : 0
 
   return (
     <div className="header-bar">
@@ -15,11 +18,13 @@ export default function Header({ current, total }: HeaderProps) {
           <PrsmLogo />
         </div>
         <div className="header-text">
-          <h1>Anaphylaxis: Know It. Act Fast. Save a Life.</h1>
-          <div className="subtitle">
-            A health training module for school students.
-            <span className="credit">Presented by PRSM Allergy Foundation</span>
-          </div>
+          <h1>{title}</h1>
+          {(subtitle || credit) && (
+            <div className="subtitle">
+              {subtitle}
+              {credit && <span className="credit">{credit}</span>}
+            </div>
+          )}
         </div>
       </div>
       <div className="progress-wrap">

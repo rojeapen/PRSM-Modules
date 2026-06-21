@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// Modules are publicly readable only once published; any signed-in admin can
+// read drafts and write. Admin accounts are created manually in the Firebase
+// console (email/password), so "signed in" == "is an admin" for this project.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /modules/{moduleId} {
+      allow read: if resource.data.status == 'published' || request.auth != null;
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}

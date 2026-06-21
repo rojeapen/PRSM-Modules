@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-21T00:00:00Z",
+  "title": "Design System: PRSM Modules",
+  "extensions": {
+    "colorMeta": {
+      "teal-600": {
+        "role": "primary",
+        "displayName": "Clinic Teal",
+        "canonical": "#0d9488",
+        "tonalRamp": ["#0d3b38", "#134e4a", "#0f766e", "#0d9488", "#14b8a6", "#2dd4bf", "#ccfbf1", "#f0fdfa"]
+      },
+      "teal-900": {
+        "role": "primary",
+        "displayName": "Deep Pine",
+        "canonical": "#0d3b38",
+        "tonalRamp": ["#0d3b38", "#134e4a", "#0f766e", "#0d9488", "#14b8a6", "#2dd4bf", "#ccfbf1", "#f0fdfa"]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Daylight Mist",
+        "canonical": "#f0faf9",
+        "tonalRamp": ["#0d3b38", "#134e4a", "#0f766e", "#0d9488", "#2dd4bf", "#ccfbf1", "#f0fdfa", "#f0faf9"]
+      },
+      "text-body": {
+        "role": "neutral",
+        "displayName": "Slate Teal",
+        "canonical": "#1e4a47",
+        "tonalRamp": ["#0d3b38", "#134e4a", "#1e4a47", "#4b7a76", "#7fa6a2", "#b2dfdb", "#ccfbf1", "#f0fdfa"]
+      },
+      "warn-border": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#f59e0b",
+        "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fffbeb"]
+      },
+      "danger-border": {
+        "role": "tertiary",
+        "displayName": "Danger Red",
+        "canonical": "#f87171",
+        "tonalRamp": ["#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#f87171", "#fecaca", "#fef2f2"]
+      },
+      "success-border": {
+        "role": "tertiary",
+        "displayName": "Success Green",
+        "canonical": "#4ade80",
+        "tonalRamp": ["#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#bbf7d0", "#f0fdf4"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "DM Serif Display. Screen titles, welcome hero, completion heading — the signature voice." },
+      "headline": { "displayName": "Headline", "purpose": "DM Serif Display at the header bar and CMS section headers." },
+      "title": { "displayName": "Title", "purpose": "DM Sans 700. Quiz questions, step/takeaway/card lead lines." },
+      "body": { "displayName": "Body", "purpose": "DM Sans 400 at 0.95rem / 1.75 line-height — all reading text." },
+      "label": { "displayName": "Label", "purpose": "Uppercase DM Sans 800, letter-spaced. Callout kickers, block labels, CMS field labels, pills." }
+    },
+    "shadows": [
+      { "name": "whisper", "value": "0 1px 2px rgba(13,59,56,0.06), 0 2px 6px rgba(13,59,56,0.05)", "purpose": "Resting lift for callouts, cards, chips, quiz options, CMS panels." },
+      { "name": "lift", "value": "0 4px 14px rgba(13,59,56,0.08), 0 10px 30px rgba(13,59,56,0.06)", "purpose": "Hover state and mid-emphasis surfaces (welcome hero, completion card)." },
+      { "name": "shell", "value": "0 12px 28px rgba(13,59,56,0.12), 0 28px 64px rgba(13,59,56,0.12)", "purpose": "The module shell only — floats above everything." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(13,148,136,0.35)", "purpose": "Teal focus glow on every interactive element, replacing the default outline." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for state transitions, entrances, and the progress fill." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "680px" },
+      { "name": "phone", "value": "520px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The forward / CTA action (Next, Save). Teal gradient, lifts on hover.",
+      "html": "<button class=\"ds-btn-primary\">Next</button>",
+      "css": ".ds-btn-primary { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700; color: #fff; background: linear-gradient(135deg, #0d9488, #0f766e); border: none; border-radius: 10px; padding: 12px 28px; cursor: pointer; box-shadow: 0 3px 10px rgba(13,118,110,0.28); transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(13,118,110,0.4); } .ds-btn-primary:active { transform: translateY(0) scale(0.98); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(13,148,136,0.35); }"
+    },
+    {
+      "name": "Back Button",
+      "kind": "button",
+      "refersTo": "button-back",
+      "description": "Secondary / backward action. Flat pale-teal, nudges left on hover.",
+      "html": "<button class=\"ds-btn-back\">Back</button>",
+      "css": ".ds-btn-back { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700; color: #4b7a76; background: #eaf2f1; border: none; border-radius: 10px; padding: 12px 28px; cursor: pointer; transition: background 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.18s cubic-bezier(0.4,0,0.2,1); } .ds-btn-back:hover { background: #d5e8e6; transform: translateX(-2px); } .ds-btn-back:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(13,148,136,0.35); }"
+    },
+    {
+      "name": "Quiz Option",
+      "kind": "custom",
+      "refersTo": "quiz-option",
+      "description": "A selectable answer card. Lifts and turns teal on hover; resolves to green (correct) or red (wrong).",
+      "html": "<button class=\"ds-quiz-option\">Lay the person flat and raise their legs</button>",
+      "css": ".ds-quiz-option { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: #1e4a47; text-align: left; background: #fff; border: 1.5px solid #b2dfdb; border-radius: 10px; padding: 13px 16px; cursor: pointer; box-shadow: 0 1px 2px rgba(13,59,56,0.06), 0 2px 6px rgba(13,59,56,0.05); transition: transform 0.15s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, background 0.2s, box-shadow 0.2s; } .ds-quiz-option:hover { border-color: #0d9488; background: #f0fdfa; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(13,59,56,0.08), 0 10px 30px rgba(13,59,56,0.06); } .ds-quiz-option:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(13,148,136,0.35); }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Pill tag with teal outline and optional leading icon.",
+      "html": "<span class=\"ds-tag\">Recognize</span>",
+      "css": ".ds-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700; color: #0f766e; background: #fff; border: 1px solid #2dd4bf; border-radius: 99px; padding: 6px 14px; box-shadow: 0 1px 2px rgba(13,59,56,0.06), 0 2px 6px rgba(13,59,56,0.05); }"
+    },
+    {
+      "name": "Block Label",
+      "kind": "chip",
+      "refersTo": "label",
+      "description": "Tiny uppercase pill labeling a content block (e.g. a quiz or scenario).",
+      "html": "<span class=\"ds-block-label\">Check yourself</span>",
+      "css": ".ds-block-label { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.9px; color: #0f766e; background: #f0fdfa; border: 1px solid #ccfbf1; border-radius: 99px; padding: 4px 12px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "CMS field input with teal focus ring.",
+      "html": "<input class=\"ds-input\" placeholder=\"Module title\" />",
+      "css": ".ds-input { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: #1e4a47; background: #fff; border: 1.5px solid #b2dfdb; border-radius: 8px; padding: 8px 10px; width: 100%; transition: box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), border-color 0.2s; } .ds-input:focus-visible { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.35); }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Resting content surface (step, takeaway). Whisper shadow, hairline teal border, lifts on hover.",
+      "html": "<div class=\"ds-card\"><strong>Call for help</strong><span>Dial emergency services before anything else.</span></div>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 2px; font-family: 'DM Sans', sans-serif; background: #fff; border: 1px solid #ccfbf1; border-radius: 14px; padding: 15px 17px; box-shadow: 0 1px 2px rgba(13,59,56,0.06), 0 2px 6px rgba(13,59,56,0.05); transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s; } .ds-card:hover { transform: translateX(2px); box-shadow: 0 4px 14px rgba(13,59,56,0.08), 0 10px 30px rgba(13,59,56,0.06); } .ds-card strong { font-size: 0.95rem; color: #0d3b38; } .ds-card span { font-size: 0.87rem; color: #4b7a76; line-height: 1.55; }"
+    },
+    {
+      "name": "Progress Track",
+      "kind": "custom",
+      "refersTo": "progress",
+      "description": "The masthead progress bar — translucent rail with a glowing teal fill and looping sheen.",
+      "html": "<div class=\"ds-progress\"><div class=\"ds-progress-fill\"></div></div>",
+      "css": ".ds-progress { background: rgba(13,59,56,0.12); border-radius: 99px; height: 8px; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.18); } .ds-progress-fill { height: 100%; width: 60%; border-radius: 99px; background: linear-gradient(90deg, #2dd4bf, #5eead4); box-shadow: 0 0 12px rgba(45,212,191,0.6); position: relative; overflow: hidden; transition: width 0.55s cubic-bezier(0.4,0,0.2,1); } .ds-progress-fill::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent); transform: translateX(-100%); animation: ds-sheen 2.6s cubic-bezier(0.4,0,0.2,1) infinite; } @keyframes ds-sheen { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } } @media (prefers-reduced-motion: reduce) { .ds-progress-fill::after { animation: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Clinic",
+    "overview": "PRSM Modules feels like a well-run clinic: serious, prepared, and reassuring all at once. The subject matter is life-safety, so the interface carries authority, but it never raises the learner's pulse. Warmth comes from a single deep-teal identity, soft daylight backgrounds, and gently rounded surfaces that lift off the page with quiet, atmospheric shadow. The system is built for recall under pressure, not for browsing: narrow single-idea screens, generous line-height, and rationed emphasis so the genuinely important moments actually land.",
+    "keyCharacteristics": [
+      "Single committed identity color (deep teal) carrying warmth and authority",
+      "Serif display + humanist sans pairing for calm, spoken-aloud hierarchy",
+      "Soft, teal-tinted ambient elevation — depth as atmosphere, not drama",
+      "Rationed emphasis with a fixed severity color language",
+      "Narrow, single-idea reading column tuned for retention"
+    ],
+    "rules": [
+      { "name": "The Single Identity Rule", "body": "Teal is the only brand color. Amber, red, blue, and green exist only to carry meaning (caution, danger, info, success). Never reach for a semantic color as decoration, and never introduce a sixth accent hue.", "section": "colors" },
+      { "name": "The Severity Lock Rule", "body": "Teal = guidance, amber = caution, red = danger. This mapping is fixed across player and CMS. A red border always means 'this can hurt you'; never spend red on anything that isn't genuinely dangerous.", "section": "colors" },
+      { "name": "The Spoken-Title Rule", "body": "Only the serif speaks. Use DM Serif Display for titles and hero/completion moments and nothing else; body, UI, and labels are always DM Sans.", "section": "typography" },
+      { "name": "The Loud-Label Rule", "body": "All-caps labels are tiny (≤0.76rem), heavy (800), and letter-spaced. That weight-plus-tracking is what makes them read as labels; never set an all-caps label at body weight or body size.", "section": "typography" },
+      { "name": "The Teal-Shadow Rule", "body": "Every shadow is tinted toward pine teal (rgba(13,59,56,…)), never neutral black. A gray drop-shadow is a defect: it reads cold and breaks the warmth.", "section": "elevation" },
+      { "name": "The Whisper-Default Rule", "body": "Surfaces rest at Whisper. Deeper shadow (Lift) is a response — to hover or to genuine importance — not a resting decoration.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep teal as the only brand color; reserve amber/red/blue/green strictly for caution/danger/info/success.",
+      "Do tint every shadow toward pine teal; resting surfaces stay at Whisper and only deepen on hover or genuine importance.",
+      "Do open ideas with DM Serif Display and set everything else in DM Sans; keep body at 0.95rem / line-height 1.75 in the ≤780px column for recall.",
+      "Do ration emphasis — one clear point per screen — so warnings and the completion moment actually land.",
+      "Do convey state with icon, label, and color together, never color alone; honor prefers-reduced-motion and keep tap targets ≥44px for AA."
+    ],
+    "donts": [
+      "Don't ship sterile corporate e-learning: no stock photos, clip-art, gray compliance boxes, or dead 'Next →' filler.",
+      "Don't go childish or gamified: no mascots, no confetti storms, no badge-spam that undercuts the life-safety seriousness.",
+      "Don't fall into the generic AI/SaaS template: no purple-gradient hero, no repeating icon-heading-text card grid, no hero-metric blocks.",
+      "Don't use gray (neutral-black) shadows — they read cold and break the warmth.",
+      "Don't set body copy in the serif, and don't spend a semantic color on decoration; meaning colors must always mean something."
+    ]
+  }
+}

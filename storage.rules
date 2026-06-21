@@ -1,0 +1,14 @@
+rules_version = '2';
+
+// Uploaded module images are publicly readable; only signed-in admins can
+// upload, limited to images up to 5 MB.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /module-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

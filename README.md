@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# PRSM Modules — data-driven training modules + CMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite app that renders interactive training modules (sections/"Screens"
+of elements: text, callouts, quizzes, videos, etc.) from a Firebase database,
+plus a built-in Google-Forms-style CMS for authoring them.
 
-Currently, two official plugins are available:
+- **Player** (public): `#/m/:slug` renders a published module from Firestore.
+  `#/` redirects to the default module. Falls back to a bundled seed when the
+  database has no matching document (so the app works before Firebase is set up).
+- **Admin** (sign-in required): `#/admin` lists modules; `#/admin/m/:slug` opens
+  the editor (screen rail · element canvas · live preview · save/publish).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Routing uses `HashRouter` so it deploys to static hosting (GitHub Pages) with no
+server rewrites.
 
-## React Compiler
+## Develop
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+cp .env.example .env.local   # fill with your Firebase web config (see below)
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Without `.env.local`, the player still renders bundled seed modules (e.g.
+`#/m/anaphylaxis`); the CMS and saving require a configured Firebase project.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+`npm run build` (type-check + bundle) · `npm run lint`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Firebase setup
+
+1. Create a Firebase project. Enable **Firestore**, **Authentication
+   (Email/Password)**, and **Storage**.
+2. Add a Web App and copy its config into `.env.local` (`VITE_FIREBASE_*`).
+   These are client-side config values, not secrets — access is controlled by
+   the security rules. Do **not** commit `.env.local`.
+3. Create admin user(s) in Authentication → Users (email/password). Any
+   signed-in user is treated as an admin.
+4. Deploy the security rules in `firestore.rules` and `storage.rules` (Firebase
+   console or `firebase deploy --only firestore:rules,storage`).
+5. Sign in at `#/admin` and click **Import sample module** to seed Firestore
+   with the Anaphylaxis module, or **+ New module** to start fresh.
+
+## Architecture
+
+- `src/cms/types.ts` — `ModuleData` → `ScreenData[]` → `ElementData` (a
+  discriminated union of all element types).
+- `src/cms/firestore.ts`, `src/cms/auth.ts`, `src/firebase.ts` — data + auth.
+- `src/cms/seed/` — bundled modules (seed + player fallback).
+- `src/elements/*` — one presentational component per element type.
+- `src/player/` — `ElementRenderer` (type → component), `ScreenRenderer`,
+  `ModulePlayer` (navigation + gating), `gating.ts`.
+- `src/admin/` — `ModuleList`, `ModuleEditor`, `ScreenRail`, `ElementCanvas`,
+  `ElementForm` (per-type fields), `PreviewPane`, `LoginPage`.
+- `src/icons.tsx` + `src/components/Icon.tsx` — curated icon registry used by
+  elements and the editor's icon picker.
+
+Author HTML is sanitized with DOMPurify (`src/cms/sanitize.ts`) before render.
+
+## Deploy (GitHub Pages)
+
+Build and publish `dist/` as before; the `CNAME` and custom domain are
+unchanged. HashRouter means every route resolves from `index.html` with no 404
+fallback needed.
