@@ -96,7 +96,7 @@ export default function ModuleList() {
               <span className="title">{m.title}</span>
               <span style={{ fontSize: '.78rem', color: 'var(--text-muted)' }}>/{m.slug}</span>
               <span className={'cms-pill ' + m.status}>{m.status}</span>
-              <a className="cms-btn" href={`#/m/${m.slug}`} target="_blank" rel="noopener noreferrer">
+              <a className="cms-btn" href={`/${m.slug}`} target="_blank" rel="noopener noreferrer">
                 View
               </a>
               <Link className="cms-btn primary" to={`/admin/m/${m.slug}`}>

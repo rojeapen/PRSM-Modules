@@ -20,6 +20,6 @@ export const db = initializeFirestore(app, { ignoreUndefinedProperties: true })
 export const auth = getAuth(app)
 export const storage = getStorage(app)
 
-/** Slug rendered at the bare domain (`/#/` redirects here). */
+/** Slug rendered at the bare domain (`/` redirects here). */
 export const DEFAULT_MODULE_SLUG =
   import.meta.env.VITE_DEFAULT_MODULE_SLUG || 'anaphylaxis'

@@ -131,7 +131,7 @@ export default function ModuleEditor() {
           >
             <Eye size={16} /> Preview
           </button>
-          <a className="cms-btn ghost" href={`#/m/${draft.slug}`} target="_blank" rel="noopener noreferrer">
+          <a className="cms-btn ghost" href={`/${draft.slug}`} target="_blank" rel="noopener noreferrer">
             <External size={16} /> View
           </a>
           <button type="button" className="cms-btn" onClick={togglePublish}>

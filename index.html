@@ -9,6 +9,23 @@
       rel="stylesheet"
     />
     <title>Anaphylaxis Module</title>
+    <script>
+      // Single Page Apps for GitHub Pages — restores the real path that 404.html
+      // encoded into the query string, before React Router boots.
+      (function () {
+        var l = window.location;
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
